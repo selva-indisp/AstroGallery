@@ -21,9 +21,9 @@ class FavouriteListAdapter :
 
         fun bind(apod: Apod) {
             with(viewBinding) {
-                author.text = apod.author
+                author.text = "\u00a9 ${apod.author}"
                 title.text = apod.title
-                date.text = dateFormatter.format(apod.date)
+                date.text = "Shot on ${dateFormatter.format(apod.date)}"
                 Glide.with(viewBinding.root).load(apod.url).into(viewBinding.pictureOfTheDay)
             }
         }

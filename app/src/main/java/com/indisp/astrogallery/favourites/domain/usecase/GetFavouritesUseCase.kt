@@ -15,7 +15,7 @@ import java.util.*
 class GetFavouritesUseCase() {
     @RequiresApi(Build.VERSION_CODES.O)
     suspend operator fun invoke(): List<Apod> {
-        delay(3000)
+        delay(1000)
         val incomingDateFormat = SimpleDateFormat("yyyy-mm-dd", Locale.getDefault())
         return listOf(
             Apod("The Comet and the Galaxy",

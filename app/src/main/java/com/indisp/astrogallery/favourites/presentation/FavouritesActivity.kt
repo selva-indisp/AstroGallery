@@ -3,7 +3,10 @@ package com.indisp.astrogallery.favourites.presentation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -28,6 +31,7 @@ class FavouritesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         favViewBinding = ActivityFavouritesBinding.inflate(layoutInflater)
         setContentView(favViewBinding.root)
+        setSupportActionBar(favViewBinding.toolbar)
         with(favViewBinding.favouriteList) {
             layoutManager = LinearLayoutManager(this@FavouritesActivity)
             adapter = favouriteListAdapter
@@ -47,15 +51,43 @@ class FavouritesActivity : AppCompatActivity() {
     }
 
     private fun handleFavouritesFoundState(favouritesFound: FavouritesFound) {
-        favViewBinding.favouriteList.visibility = View.VISIBLE
+        toggleFavouritesListGroupVisibility(View.VISIBLE)
+        toggleFavouritesEmptyViewGroupVisibility(View.GONE)
+        toggleFavouritesLoaderVisibility(View.GONE)
+
         favouriteListAdapter.submitList(favouritesFound.favourites)
     }
 
     private fun handleFavouritesLoadingState() {
-        favViewBinding.favouriteList.visibility = View.GONE
+        toggleFavouritesListGroupVisibility(View.GONE)
+        toggleFavouritesEmptyViewGroupVisibility(View.GONE)
+        toggleFavouritesLoaderVisibility(View.VISIBLE)
+
     }
 
     private fun handleFavouritesEmptyState() {
+        toggleFavouritesListGroupVisibility(View.GONE)
+        toggleFavouritesEmptyViewGroupVisibility(View.VISIBLE)
+        toggleFavouritesLoaderVisibility(View.GONE)
+    }
 
+    private fun toggleFavouritesLoaderVisibility(visibility: Int) {
+        with(favViewBinding) {
+            favouritesLoading.visibility = visibility
+        }
+    }
+
+    private fun toggleFavouritesListGroupVisibility(visibility: Int) {
+        with(favViewBinding) {
+            favouriteList.visibility = visibility
+            searchFab.visibility = visibility
+            appBarLayout.visibility = visibility
+        }
+    }
+
+    private fun toggleFavouritesEmptyViewGroupVisibility(visibility: Int) {
+        with(favViewBinding) {
+            favouritesEmptyViewGroup.visibility = visibility
+        }
     }
 }

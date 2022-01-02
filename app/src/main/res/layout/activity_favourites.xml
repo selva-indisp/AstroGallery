@@ -5,34 +5,115 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".favourites.presentation.FavouritesActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:backgroundTint="?attr/colorSurface"
+        android:visibility="gone">
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="150dp"
+            app:contentScrim="?attr/colorSurface"
+            android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:title="Favourites">
             <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="parallax" />
+                app:layout_collapseMode="pin" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/favouritesEmptyViewGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:visibility="visible">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/favouriteEmptyAnimation"
+            android:layout_width="0dp"
+            android:layout_height="350dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/favourites_empty"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            />
+
+        <TextView
+            android:id="@+id/favouriteEmptyErrorText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AstroGallery.TextAppearance.H1"
+            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyAnimation"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="You'll find your favourite astro pics/videos here"/>
+
+        <TextView
+            android:id="@+id/favouriteEmptyErrorSubText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/AstroGallery.TextAppearance.H2"
+            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyErrorText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textAlignment="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="To search for astro picture or video for any day, click the search button below"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_marginTop="24dp"
+            android:drawableLeft="@drawable/ic_search_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyErrorSubText"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/favouritesLoading"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        app:lottie_rawRes="@raw/favourites_searching"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        android:visibility="gone"
+        />
+    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/favouriteList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:visibility="gone"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:visibility="gone"
         tools:itemCount="5"
-        tools:listitem="@layout/layout_favourite_item">
+        tools:listitem="@layout/layout_favourite_item"/>
 
-    </androidx.recyclerview.widget.RecyclerView>
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/searchFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_gravity="bottom|end"
+        android:visibility="gone"
+        android:src="@drawable/ic_search_24"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
