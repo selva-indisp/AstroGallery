@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AstroGallery">
         <activity
-            android:name=".details.presentation.DetailsActivity"
+            android:name=".search.presentation.SearchActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".details.presentation.DetailsActivity"
+            android:exported="true"></activity>
         <activity
             android:name=".favourites.presentation.FavouritesActivity"
             android:exported="true">

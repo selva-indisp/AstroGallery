@@ -2,14 +2,10 @@ package com.indisp.astrogallery.favourites.domain.usecase
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.indisp.astrogallery.Result
 import com.indisp.astrogallery.favourites.domain.model.Apod
-import com.indisp.astrogallery.favourites.domain.model.FavouriteApod
 import kotlinx.coroutines.delay
 import java.net.URL
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 class GetFavouritesUseCase() {
