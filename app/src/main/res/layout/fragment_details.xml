@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".details.presentation.DetailsFragment">
+
+        <ImageView
+            android:id="@+id/pictureOfTheDay"
+            android:layout_width="match_parent"
+            android:layout_height="350dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/AstroGallery.TextAppearance.Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="16dp"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/save"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/pictureOfTheDay"
+            tools:text="JWST on the Road to L2" />
+
+        <TextView
+            android:id="@+id/author"
+            style="@style/AstroGallery.TextAppearance.SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Malcolm Park" />
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/AstroGallery.TextAppearance.SubTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:paddingBottom="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintStart_toEndOf="@id/separator"
+            app:layout_constraintTop_toTopOf="@id/author"
+            tools:text="Dec 31, 2021" />
+
+        <TextView
+            android:id="@+id/removeFromFav"
+            style="@style/AstroGallery.TextAppearance.Link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/shape_round_border"
+            android:paddingBottom="4dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="3dp"
+            android:text="Remove"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title" />
+
+        <TextView
+            android:id="@+id/save"
+            style="@style/AstroGallery.TextAppearance.Link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/shape_round_border"
+            android:paddingBottom="4dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:paddingTop="3dp"
+            android:text="Save"
+            app:layout_constraintBottom_toBottomOf="@id/date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title" />
+
+        <TextView
+            android:id="@+id/explanation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date"
+            tools:text="This week the shadow of the New Moon fell on planet Earth, crossing Queensland's Cape York in northern Australia ... for the second time in six months. On the morning of May 10, the Moon's apparent size was too small to completely cover the Sun though, revealing along the central path of the annular solar eclipse. Near mid-eclipse from Coen, Australia, a webcast team captured this telescopic snapshot of the annular phase. Taken with a hydrogen-alpha filter, the dramatic image finds the Moon's silhouette just within the solar disk, and the limb of the active Sun spiked with solar prominences. Still, after hosting back-to-back solar eclipses, northern Australia will miss the next and final solar eclipse of 2013. This November, a rare hybrid eclipse will track across the North Atlantic and equatorial Africa." />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="2dp"
+            android:layout_height="2dp"
+            android:layout_marginBottom="6dp"
+            android:background="@drawable/shape_round"
+            app:layout_constraintBottom_toBottomOf="@id/author"
+            app:layout_constraintStart_toEndOf="@id/author"
+            app:layout_constraintTop_toTopOf="@id/author" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="left"
+            app:constraint_referenced_ids="removeFromFav,save"
+            tools:layout_editor_absoluteX="411dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,5 +1,6 @@
 package com.indisp.astrogallery.favourites.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.indisp.astrogallery.R
 import com.indisp.astrogallery.databinding.ActivityFavouritesBinding
+import com.indisp.astrogallery.details.presentation.DetailsActivity
+import com.indisp.astrogallery.details.presentation.DetailsFragment
+import com.indisp.astrogallery.favourites.domain.model.Apod
 import com.indisp.astrogallery.favourites.domain.usecase.GetFavouritesUseCase
 import kotlinx.coroutines.flow.collectLatest
 
@@ -25,7 +29,7 @@ class FavouritesActivity : AppCompatActivity() {
     private val favouritesViewModel: FavouritesViewModel by lazy {
         ViewModelProvider(this, FavouritesViewModelFactory(GetFavouritesUseCase())).get(FavouritesViewModel::class.java)
     }
-    private val favouriteListAdapter = FavouriteListAdapter()
+    private val favouriteListAdapter = FavouriteListAdapter(::launchApodDetailsActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +52,12 @@ class FavouritesActivity : AppCompatActivity() {
             }
         }
         favouritesViewModel.loadFavourites()
+    }
+
+    private fun launchApodDetailsActivity(apod: Apod) {
+        val intent = Intent(this, DetailsActivity::class.java)
+        intent.putExtra(DetailsFragment.KEY_APOD, apod)
+        startActivity(intent)
     }
 
     private fun handleFavouritesFoundState(favouritesFound: FavouritesFound) {
