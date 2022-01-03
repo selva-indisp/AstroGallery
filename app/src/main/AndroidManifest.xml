@@ -11,8 +11,7 @@
         android:theme="@style/Theme.AstroGallery">
         <activity
             android:name=".details.presentation.DetailsActivity"
-            android:exported="true"
-            android:parentActivityName=".favourites.presentation.FavouritesActivity">
+            android:exported="true">
         </activity>
         <activity
             android:name=".favourites.presentation.FavouritesActivity"

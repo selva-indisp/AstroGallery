@@ -27,7 +27,7 @@ class FavouritesActivity : AppCompatActivity() {
     }
     private lateinit var favViewBinding: ActivityFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by lazy {
-        ViewModelProvider(this, FavouritesViewModelFactory(GetFavouritesUseCase())).get(FavouritesViewModel::class.java)
+        ViewModelProvider(this, FavouritesViewModelFactory(GetFavouritesUseCase()))[FavouritesViewModel::class.java]
     }
     private val favouriteListAdapter = FavouriteListAdapter(::launchApodDetailsActivity)
 

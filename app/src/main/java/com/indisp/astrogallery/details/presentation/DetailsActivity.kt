@@ -2,6 +2,7 @@ package com.indisp.astrogallery.details.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.indisp.astrogallery.R
 import com.indisp.astrogallery.databinding.ActivityDetailsBinding
 
@@ -24,5 +25,12 @@ class DetailsActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction().add(R.id.apodDetailsContainer, detailsFragment)
                 .commit()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
