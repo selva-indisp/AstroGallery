@@ -1,6 +1,5 @@
 package com.indisp.astrogallery.favourites.presentation
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -8,15 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.indisp.astrogallery.databinding.LayoutFavouriteItemBinding
-import com.indisp.astrogallery.details.presentation.DetailsActivity
 import com.indisp.astrogallery.favourites.domain.model.Apod
-import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class FavouriteListAdapter(val onItemClick: (Apod) -> Unit) :
     ListAdapter<Apod, FavouriteListAdapter.FavouriteItemViewHolder>(FavouriteItemDiffUtil) {
 
-    private val dateFormatter = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+    private val dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.getDefault())
 
     inner class FavouriteItemViewHolder(private val viewBinding: LayoutFavouriteItemBinding) :
         RecyclerView.ViewHolder(viewBinding.root) {

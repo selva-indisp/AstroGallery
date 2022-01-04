@@ -20,25 +20,20 @@ import com.indisp.astrogallery.favourites.presentation.FavouritesViewModel
 import com.indisp.astrogallery.favourites.presentation.FavouritesViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class DetailsFragment : Fragment(R.layout.fragment_details) {
 
-     companion object {
-        const val KEY_APOD = "key_apod"
-    }
-
-    private val detailsViewModel: DetailsViewModel by lazy {
+    val detailsViewModel: DetailsViewModel by lazy {
         ViewModelProvider(this, DetailsViewModelFactory(GetApodDetailsUseCase()))[DetailsViewModel::class.java]
     }
-    private val dateFormatter = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+    private val dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.getDefault())
     private lateinit var viewBinding: FragmentDetailsBinding
-    private lateinit var apod: Apod
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewBinding = FragmentDetailsBinding.bind(view)
-        apod = arguments?.get(KEY_APOD) as Apod
         lifecycleScope.launchWhenCreated {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 detailsViewModel.detailsViewState.collectLatest {

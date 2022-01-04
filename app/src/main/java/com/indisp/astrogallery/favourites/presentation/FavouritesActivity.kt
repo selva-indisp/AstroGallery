@@ -56,7 +56,7 @@ class FavouritesActivity : AppCompatActivity() {
 
     private fun launchApodDetailsActivity(apod: Apod) {
         val intent = Intent(this, DetailsActivity::class.java)
-        intent.putExtra(DetailsFragment.KEY_APOD, apod)
+        intent.putExtra(DetailsActivity.KEY_APOD, apod.date)
         startActivity(intent)
     }
 
