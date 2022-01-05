@@ -19,15 +19,20 @@ import com.indisp.astrogallery.details.presentation.DetailsActivity
 import com.indisp.astrogallery.details.presentation.DetailsFragment
 import com.indisp.astrogallery.favourites.domain.model.Apod
 import com.indisp.astrogallery.favourites.domain.usecase.GetFavouritesUseCase
+import com.indisp.astrogallery.search.presentation.SearchActivity
 import kotlinx.coroutines.flow.collectLatest
 
 class FavouritesActivity : AppCompatActivity() {
     private companion object {
         val TAG = FavouritesActivity::class.simpleName
     }
+
     private lateinit var favViewBinding: ActivityFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by lazy {
-        ViewModelProvider(this, FavouritesViewModelFactory(GetFavouritesUseCase()))[FavouritesViewModel::class.java]
+        ViewModelProvider(
+            this,
+            FavouritesViewModelFactory(GetFavouritesUseCase())
+        )[FavouritesViewModel::class.java]
     }
     private val favouriteListAdapter = FavouriteListAdapter(::launchApodDetailsActivity)
 
@@ -36,14 +41,23 @@ class FavouritesActivity : AppCompatActivity() {
         favViewBinding = ActivityFavouritesBinding.inflate(layoutInflater)
         setContentView(favViewBinding.root)
         setSupportActionBar(favViewBinding.toolbar)
-        with(favViewBinding.favouriteList) {
-            layoutManager = LinearLayoutManager(this@FavouritesActivity)
-            adapter = favouriteListAdapter
+        with(favViewBinding) {
+            searchFab.setOnClickListener {
+                launchSearchActivity()
+            }
+            searchButton.setOnClickListener {
+                launchSearchActivity()
+            }
+            with(favouriteList) {
+                layoutManager = LinearLayoutManager(this@FavouritesActivity)
+                adapter = favouriteListAdapter
+            }
         }
+
         lifecycleScope.launchWhenCreated {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 favouritesViewModel.favouritesViewState.collectLatest {
-                    when(it) {
+                    when (it) {
                         is FavouritesLoading -> handleFavouritesLoadingState()
                         is FavouritesEmpty -> handleFavouritesEmptyState()
                         is FavouritesFound -> handleFavouritesFoundState(it)
@@ -52,6 +66,10 @@ class FavouritesActivity : AppCompatActivity() {
             }
         }
         favouritesViewModel.loadFavourites()
+    }
+
+    private fun launchSearchActivity() {
+        startActivity(Intent(this, SearchActivity::class.java))
     }
 
     private fun launchApodDetailsActivity(apod: Apod) {

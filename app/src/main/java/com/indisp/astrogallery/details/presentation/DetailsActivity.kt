@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import com.indisp.astrogallery.R
 import com.indisp.astrogallery.databinding.ActivityDetailsBinding
+import java.time.LocalDate
 import java.util.*
 
 class DetailsActivity : AppCompatActivity() {
@@ -34,7 +35,7 @@ class DetailsActivity : AppCompatActivity() {
         }
         supportFragmentManager.executePendingTransactions()
         detailsViewModel = (supportFragmentManager.findFragmentByTag(DetailsFragment::class.simpleName) as DetailsFragment).detailsViewModel
-        detailsViewModel.loadDetailsFor(intent.extras!!.getSerializable(KEY_APOD) as Date)
+        detailsViewModel.loadDetailsFor(intent.extras!!.getSerializable(KEY_APOD) as LocalDate)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

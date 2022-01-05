@@ -7,3 +7,4 @@ sealed class DetailsViewState
 data class DetailsFound(val apod: Apod): DetailsViewState()
 data class DetailsNotFound(val error: GetApodDetailsError): DetailsViewState()
 object DetailsLoading : DetailsViewState()
+object DetailsIdle : DetailsViewState()

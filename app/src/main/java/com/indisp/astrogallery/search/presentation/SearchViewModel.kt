@@ -1,32 +1,39 @@
 package com.indisp.astrogallery.search.presentation
 
-import android.text.format.DateUtils
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.indisp.astrogallery.details.presentation.DetailsViewModel
-import java.util.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import java.time.LocalDate
 
 class SearchViewModel(private val detailsViewModel: DetailsViewModel) : ViewModel() {
 
-    private var currentDate: Date? = null
+    private val mutableSelectedDate = MutableStateFlow<LocalDate?>(null)
+    val selectedDate: StateFlow<LocalDate?> = mutableSelectedDate
 
-    fun loadDetailsForDate(date: Date) {
-        currentDate = date
-        detailsViewModel.loadDetailsFor(currentDate!!)
+    fun loadDetailsForDate(date: LocalDate) {
+        mutableSelectedDate.value = date
+        detailsViewModel.loadDetailsFor(mutableSelectedDate.value!!)
     }
 
     fun loadDetailsForNextDate() {
-        loadDetailsForDate(Calendar.getInstance(Locale.getDefault()).run {
-            time = currentDate
-            add(Calendar.DATE, 1)
-            return@run time
-        })
+        mutableSelectedDate.value?.let {
+            if (it.isEqual(LocalDate.now()))
+                return@let
+            loadDetailsForDate(it.plusDays(1))
+        }
     }
 
     fun loadDetailsForPrevDate() {
-        loadDetailsForDate(Calendar.getInstance(Locale.getDefault()).run {
-            time = currentDate
+        mutableSelectedDate.value?.let {
+            loadDetailsForDate(it.minusDays(1))
+        }
+    }
+}
 
-            return@run time
-        })
+class SearchViewModelFactory(private val detailsViewModel: DetailsViewModel) : ViewModelProvider.NewInstanceFactory() {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        return SearchViewModel(detailsViewModel) as T
     }
 }

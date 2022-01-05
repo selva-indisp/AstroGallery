@@ -33,7 +33,7 @@ class ExampleUnitTest {
         println("LocalNextDay - ${nextLocalDay.format(dateFormatter)}")
         println("LocalPrevDay - ${prevLocalDay.format(dateFormatter)}")
 
-        val dateFormatterDisplay = DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.getDefault())
+        val dateFormatterDisplay = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.getDefault())
         println("Formatted - ${nextLocalDay.format(dateFormatterDisplay)}")
     }
 }

@@ -5,13 +5,12 @@ import com.indisp.astrogallery.details.domain.model.GetApodDetailsError
 import com.indisp.astrogallery.favourites.domain.model.Apod
 import kotlinx.coroutines.delay
 import java.net.URL
-import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 class GetApodDetailsUseCase {
-    suspend operator fun invoke(date: Date): Result<Apod, GetApodDetailsError> {
+    suspend operator fun invoke(date: LocalDate): Result<Apod, GetApodDetailsError> {
         delay(2000)
         val incomingDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.getDefault())
         return  Result.Success(Apod("The Comet and the Galaxy",

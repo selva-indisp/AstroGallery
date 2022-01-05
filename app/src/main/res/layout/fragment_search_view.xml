@@ -2,58 +2,47 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorSurface"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/prevDateViewGroup"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/prevDate"
         android:layout_width="wrap_content"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        style="@style/AstroGallery.SearchView.MaterialButton.Tint"
+        android:text="Prev"
+        android:enabled="false"
+        android:drawableLeft="@drawable/ic_chevron_left_24"
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintEnd_toStartOf="@id/searchDate"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_left_24"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Prev"/>
-    </LinearLayout>
-    <TextView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/searchDate"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        app:layout_constraintStart_toEndOf="@id/prevDateViewGroup"
-        app:layout_constraintEnd_toStartOf="@id/nextDateViewGroup"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="May 22, 1999"/>
-
-    <LinearLayout
-        android:id="@+id/nextDateViewGroup"
         android:layout_width="wrap_content"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
+        android:layout_height="match_parent"
+        style="@style/AstroGallery.SearchView.MaterialButton.Tint"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintStart_toEndOf="@id/prevDate"
+        app:layout_constraintEnd_toStartOf="@id/nextDate"
+        app:layout_constraintTop_toTopOf="parent"
+        android:text="Search"
+        android:drawableLeft="@drawable/ic_search_24"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nextDate"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        style="@style/AstroGallery.SearchView.MaterialButton.Tint"
+        android:text="Next"
+        android:enabled="false"
+        android:drawableEnd="@drawable/ic_chevron_right_24"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_chevron_right_24"
-            />
-
-    </LinearLayout>
+        app:layout_constraintStart_toEndOf="@id/searchDate"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
