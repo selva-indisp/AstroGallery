@@ -17,26 +17,14 @@
 
         <TextView
             android:id="@+id/favouriteEmptyErrorText"
-            style="@style/AstroGallery.TextAppearance.H1"
+            style="@style/AstroGallery.TextAppearance.H3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You'll find your favourite astro pics/videos here"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyAnimation" />
-
-        <TextView
-            android:id="@+id/favouriteEmptyErrorSubText"
-            style="@style/AstroGallery.TextAppearance.H2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingBottom="8dp"
-            android:paddingTop="8dp"
-            android:text="To search for astro picture or video for any day, click the search button below"
+            android:text="Start searching and save the pictures you like and they will show up here"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyErrorText" />
+            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyAnimation" />
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/favouriteEmptyAnimation"
@@ -54,12 +42,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:drawableLeft="@drawable/ic_search_24"
             android:text="Search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyErrorSubText" />
+            app:layout_constraintTop_toBottomOf="@id/favouriteEmptyErrorText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

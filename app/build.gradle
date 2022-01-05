@@ -54,7 +54,16 @@ dependencies {
     implementation "com.google.dagger:dagger:$dagger"
     kapt "com.google.dagger:dagger-compiler:$dagger"
 
-    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    def room = '2.3.0'
+    implementation "androidx.room:room-runtime:$room"
+    implementation "androidx.room:room-ktx:$room"
+    kapt "androidx.room:room-compiler:$room"
+
+    def retrofit = '2.9.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.2.1"
+
     implementation 'com.github.bumptech.glide:glide:4.12.0'
     implementation 'com.airbnb.android:lottie:4.2.2'
 

@@ -3,9 +3,6 @@ package com.indisp.astrogallery.favourites.presentation
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Lifecycle
@@ -13,12 +10,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.indisp.astrogallery.R
+import com.indisp.astrogallery.ApodApplication
 import com.indisp.astrogallery.databinding.ActivityFavouritesBinding
 import com.indisp.astrogallery.details.presentation.DetailsActivity
-import com.indisp.astrogallery.details.presentation.DetailsFragment
-import com.indisp.astrogallery.favourites.domain.model.Apod
-import com.indisp.astrogallery.favourites.domain.usecase.GetFavouritesUseCase
+import com.indisp.astrogallery.core.domain.model.Apod
 import com.indisp.astrogallery.search.presentation.SearchActivity
 import kotlinx.coroutines.flow.collectLatest
 
@@ -29,12 +24,13 @@ class FavouritesActivity : AppCompatActivity() {
 
     private lateinit var favViewBinding: ActivityFavouritesBinding
     private val favouritesViewModel: FavouritesViewModel by lazy {
+        val depProvider = (application as ApodApplication).domainDebModule
         ViewModelProvider(
             this,
-            FavouritesViewModelFactory(GetFavouritesUseCase())
+            FavouritesViewModelFactory(depProvider.getFavouritesUseCase, depProvider.getRemoveFromFavouriteUseCase)
         )[FavouritesViewModel::class.java]
     }
-    private val favouriteListAdapter = FavouriteListAdapter(::launchApodDetailsActivity)
+    private val favouriteListAdapter = FavouriteListAdapter(::launchApodDetailsActivity, ::removeFromFavourites)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,6 +57,7 @@ class FavouritesActivity : AppCompatActivity() {
                         is FavouritesLoading -> handleFavouritesLoadingState()
                         is FavouritesEmpty -> handleFavouritesEmptyState()
                         is FavouritesFound -> handleFavouritesFoundState(it)
+                        else -> Toast.makeText(this@FavouritesActivity, "Something went wrong!", Toast.LENGTH_LONG).show()
                     }
                 }
             }
@@ -76,6 +73,10 @@ class FavouritesActivity : AppCompatActivity() {
         val intent = Intent(this, DetailsActivity::class.java)
         intent.putExtra(DetailsActivity.KEY_APOD, apod.date)
         startActivity(intent)
+    }
+
+    private fun removeFromFavourites(apod: Apod) {
+        favouritesViewModel.removeFromFavourites(apod)
     }
 
     private fun handleFavouritesFoundState(favouritesFound: FavouritesFound) {

@@ -1,5 +1,6 @@
 package com.indisp.astrogallery.favourites.domain.usecase
 
+import com.indisp.astrogallery.core.domain.usecase.GetFavouritesUseCase
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Test

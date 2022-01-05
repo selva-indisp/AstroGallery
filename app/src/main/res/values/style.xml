@@ -25,6 +25,10 @@
         <item name="android:fontFamily">@font/roboto_medium</item>
         <item name="android:textSize">13sp</item>
     </style>
+    <style name="AstroGallery.TextAppearance.H3" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/roboto_medium</item>
+        <item name="android:textSize">15sp</item>
+    </style>
 
     <style name="AstroGallery.TextAppearance.Link" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/roboto_medium</item>

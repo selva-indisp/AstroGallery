@@ -7,11 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.indisp.astrogallery.databinding.LayoutFavouriteItemBinding
-import com.indisp.astrogallery.favourites.domain.model.Apod
+import com.indisp.astrogallery.core.domain.model.Apod
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class FavouriteListAdapter(val onItemClick: (Apod) -> Unit) :
+class FavouriteListAdapter(val onItemClick: (Apod) -> Unit, val removeFromFav: (Apod) -> Unit) :
     ListAdapter<Apod, FavouriteListAdapter.FavouriteItemViewHolder>(FavouriteItemDiffUtil) {
 
     private val dateFormatter = DateTimeFormatter.ofPattern("MMMM dd, yyyy", Locale.getDefault())
@@ -21,11 +21,13 @@ class FavouriteListAdapter(val onItemClick: (Apod) -> Unit) :
 
         fun bind(apod: Apod) {
             with(viewBinding) {
-                author.text = "\u00a9 ${apod.author}"
+                author.text = if(apod.author.isBlank()) "\u00a9 N/A" else "\u00a9 ${apod.author}"
                 title.text = apod.title
                 date.text = "Shot on ${dateFormatter.format(apod.date)}"
                 Glide.with(viewBinding.root).load(apod.url).into(viewBinding.pictureOfTheDay)
-
+                removeFromFav.setOnClickListener {
+                    removeFromFav(apod)
+                }
                 root.setOnClickListener {
                     onItemClick(apod)
                 }
