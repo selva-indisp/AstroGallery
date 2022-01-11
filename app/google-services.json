@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1098153219884",
+    "project_id": "astrogallery-01",
+    "storage_bucket": "astrogallery-01.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1098153219884:android:7b0ba4b4c9d6a51c323e89",
+        "android_client_info": {
+          "package_name": "com.indisp.astrogallery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1098153219884-lhjj2fe2qol36iequobeiu24focd6fvo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHUOyI8LSRPCPZyvtvPynMBq9w9nIqzLA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1098153219884-lhjj2fe2qol36iequobeiu24focd6fvo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
