@@ -1,1 +1,1 @@
-* Added support for Github actions
+* Fixed app update by signing the release build properly
