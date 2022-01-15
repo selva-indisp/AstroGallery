@@ -1,0 +1,13 @@
+name: Training
+on:
+  workflow_dispatch:
+    inputs:
+      ping:
+        description: 'This ping input would be returned in the output'
+        required: true
+        default: 'Hello'
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo ${{ping}}
