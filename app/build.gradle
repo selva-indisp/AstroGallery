@@ -20,7 +20,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('astro_gallery_release.keystore')
+            storeFile file('astro_gallery.keystore')
             storePassword System.getenv('STORE_PASSWORD')
             keyAlias System.getenv('KEY_ALIAS')
             keyPassword System.getenv('KEY_PASSWORD')

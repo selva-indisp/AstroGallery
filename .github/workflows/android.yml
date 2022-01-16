@@ -20,8 +20,8 @@ jobs:
         cache: gradle
     - name: Restore release configuration
       run: |
-        echo "${{ secrets.KEY }}" > astro_gallery_release.keystore.asc
-        gpg -d --passphrase "${{ secrets.KEY_DECRYPT_PASSWORD }} --batch astro_gallery_release.keystore.asc > app/astro_gallery_release.keystore"
+        echo "${{ secrets.KEY }}" > astro_gallery.keystore.asc
+        gpg -d --passphrase "${{ secrets.KEY_DECRYPT_PASSWORD }} --batch astro_gallery.keystore.asc > app/astro_gallery.keystore"
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
