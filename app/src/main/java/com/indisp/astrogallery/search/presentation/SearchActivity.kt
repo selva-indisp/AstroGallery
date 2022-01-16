@@ -1,12 +1,11 @@
 package com.indisp.astrogallery.search.presentation
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
 import android.widget.DatePicker
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -14,7 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.indisp.astrogallery.R
 import com.indisp.astrogallery.databinding.ActivitySearchBinding
 import com.indisp.astrogallery.details.presentation.DetailsFragment
-import kotlinx.android.synthetic.main.fragment_search_view.*
 import kotlinx.coroutines.flow.collectLatest
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
