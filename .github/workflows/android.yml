@@ -18,6 +18,10 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
         cache: gradle
+    - name: Restore release configuration
+      run: |
+        echo "${{ secrets.KEY }}" > astro_gallery_release.keystore.asc
+        gpg -d --passphrase "${{ secrets.KEY_DECRYPT_PASSWORD }} --batch astro_gallery_release.keystore.asc > app/astro_gallery_release.keystore"
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Build with Gradle
@@ -29,4 +33,4 @@ jobs:
     - name: Install firebase-tools
       run: npm install -g firebase-tools
     - name: Publish to firebase
-      run: firebase appdistribution:distribute --app 1:1098153219884:android:7b0ba4b4c9d6a51c323e89 --release-notes-file release-notes.txt --groups qa app/build/outputs/apk/release/app-release-unsigned.apk --token 1//0g7-q3uSseEYSCgYIARAAGBASNwF-L9IryvYhiPFfAD1kP-8SaAhgUwq-imFU3AfwpbyCFvHgbpLzOmDoMTCNPhmXE7h7zln4vKg
+      run: firebase appdistribution:distribute --app 1:1098153219884:android:7b0ba4b4c9d6a51c323e89 --release-notes-file release-notes.txt --groups qa app/build/outputs/apk/release/app-release.apk --token 1//0g7-q3uSseEYSCgYIARAAGBASNwF-L9IryvYhiPFfAD1kP-8SaAhgUwq-imFU3AfwpbyCFvHgbpLzOmDoMTCNPhmXE7h7zln4vKg
