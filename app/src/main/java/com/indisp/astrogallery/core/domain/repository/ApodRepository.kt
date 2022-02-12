@@ -1,6 +1,6 @@
 package com.indisp.astrogallery.core.domain.repository
 
-import com.indisp.astrogallery.core.domain.model.Result
+import com.indisp.shared.domain.Result
 import com.indisp.astrogallery.details.domain.model.GetApodDetailsError
 import com.indisp.astrogallery.core.domain.model.Apod
 import kotlinx.coroutines.flow.Flow

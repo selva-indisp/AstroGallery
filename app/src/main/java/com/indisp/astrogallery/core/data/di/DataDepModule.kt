@@ -31,11 +31,11 @@ class DataDepModule(private val context: Context) {
         Room.databaseBuilder(context, ApodDatabase::class.java, ApodDatabase.NAME).build()
     }
 
-    val apodApiService: ApodApiService by lazy {
+    private val apodApiService: ApodApiService by lazy {
         retrofit.create(ApodApiService::class.java)
     }
 
-    val apodCacheService: ApodCacheService by lazy {
+    private val apodCacheService: ApodCacheService by lazy {
         ApodCacheServiceImpl(apodDatabase.apodDao(), ApodEntityMapperImpl())
     }
 

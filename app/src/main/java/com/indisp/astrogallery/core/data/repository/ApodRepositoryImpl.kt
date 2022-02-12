@@ -1,6 +1,6 @@
 package com.indisp.astrogallery.core.data.repository
 
-import com.indisp.astrogallery.core.domain.model.Result
+import com.indisp.shared.domain.Result
 import com.indisp.astrogallery.core.data.cache.ApodCacheService
 import com.indisp.astrogallery.core.data.remote.ApodApiService
 import com.indisp.astrogallery.core.data.remote.mapper.ApodResponseMapper

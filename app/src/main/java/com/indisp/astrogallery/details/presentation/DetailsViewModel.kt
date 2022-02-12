@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.indisp.astrogallery.core.domain.model.Apod
-import com.indisp.astrogallery.core.domain.model.Result
+import com.indisp.shared.domain.Result
 import com.indisp.astrogallery.core.domain.usecase.GetApodDetailsUseCase
 import com.indisp.astrogallery.core.domain.usecase.RemoveFromFavourite
 import com.indisp.astrogallery.core.domain.usecase.SaveAsFavourite

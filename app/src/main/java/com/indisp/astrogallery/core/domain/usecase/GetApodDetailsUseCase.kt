@@ -1,6 +1,6 @@
 package com.indisp.astrogallery.core.domain.usecase
 
-import com.indisp.astrogallery.core.domain.model.Result
+import com.indisp.shared.domain.Result
 import com.indisp.astrogallery.details.domain.model.GetApodDetailsError
 import com.indisp.astrogallery.core.domain.model.Apod
 import com.indisp.astrogallery.core.domain.repository.ApodRepository
