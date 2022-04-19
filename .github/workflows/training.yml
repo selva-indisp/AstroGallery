@@ -7,9 +7,17 @@ on:
         description: Message to display
         required: true
         default: "Hello World"
+      channel:
+        type: choice
+        description: Send via
+        required: true
+        options:
+          - mobile notification
+          - email
+          - slack
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - name: Print user message
-        run: echo ${{ inputs.message }}
+        run: echo ${{ github.event.inputs.message }}
