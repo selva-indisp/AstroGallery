@@ -1,5 +1,7 @@
 name: Training
 on:
+  push:
+    branches: [ workflows ]
   workflow_dispatch:
     inputs:
       message:
@@ -20,4 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Print user message
-        run: echo ${{ github.event.inputs.message }}
+        run: echo "Inside repository ${{ github.repository }}"
+      - run: echo "${{ github.event.inputs.message }}"
+      - run: ls ${{ github.workspace }}
