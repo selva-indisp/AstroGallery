@@ -39,12 +39,12 @@ jobs:
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
     - name: Building Debug
-        if: ${{ github.event.inputs.buildType == 'debug' }}
-        run: ./gradlew assembleDebug
-        env:
-          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+      if: ${{ github.event.inputs.buildType == 'debug' }}
+      run: ./gradlew assembleDebug
+      env:
+        STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
     - name: Install node and nvm
       uses: actions/setup-node@v2
       with:
