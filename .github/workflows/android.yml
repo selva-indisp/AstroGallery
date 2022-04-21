@@ -6,6 +6,15 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+    inputs:
+      buildType:
+        description: 'Build Type'
+        required: false
+        default: release
+        type: choice
+        options:
+          - debug
+          - release
 
 jobs:
   build:
@@ -22,12 +31,20 @@ jobs:
       run: echo "${{ secrets.KEY }}" | base64 -di > app/astro_gallery.keystore
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
-    - name: Build with Gradle
+    - name: Building Release
+      if: ${{ github.event.inputs.buildType == 'release' }}
       run: ./gradlew assembleRelease
       env:
         STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
         KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+    - name: Building Debug
+        if: ${{ github.event.inputs.buildType == 'debug' }}
+        run: ./gradlew assembleDebug
+        env:
+          STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
     - name: Install node and nvm
       uses: actions/setup-node@v2
       with:
