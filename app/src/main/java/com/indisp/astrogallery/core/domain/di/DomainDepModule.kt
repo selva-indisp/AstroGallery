@@ -6,7 +6,7 @@ import com.indisp.astrogallery.core.domain.usecase.GetFavouritesUseCase
 import com.indisp.astrogallery.core.domain.usecase.RemoveFromFavourite
 import com.indisp.astrogallery.core.domain.usecase.SaveAsFavourite
 
-class DomainDepModule(private val apodRepository: ApodRepository) {
+class DomainDepModule(apodRepository: ApodRepository) {
     val getFavouritesUseCase = GetFavouritesUseCase(apodRepository)
     val getDetailsUseCase = GetApodDetailsUseCase(apodRepository)
     val getSaveAsFavouriteUseCase = SaveAsFavourite(apodRepository)

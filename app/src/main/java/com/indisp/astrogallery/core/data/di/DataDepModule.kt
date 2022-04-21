@@ -10,12 +10,13 @@ import com.indisp.astrogallery.core.data.remote.ApodApiService
 import com.indisp.astrogallery.core.data.remote.mapper.apodResponseMapper
 import com.indisp.astrogallery.core.data.repository.ApodRepositoryImpl
 import com.indisp.astrogallery.core.domain.repository.ApodRepository
+import com.indisp.logger.Logger
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class DataDepModule(private val context: Context) {
+class DataDepModule(private val context: Context, private val logger: Logger) {
 
     private val httpClient: OkHttpClient = OkHttpClient.Builder().addInterceptor{
         val newUrl = it.request().url.newBuilder().addQueryParameter("api_key", "xEgCEOA0ZVJZrJggT05YFedW0MkrEGoYwsFTqsUX").build()
@@ -40,6 +41,6 @@ class DataDepModule(private val context: Context) {
     }
 
     val apodRepository: ApodRepository by lazy {
-        ApodRepositoryImpl(apodApiService, apodCacheService, ::apodResponseMapper)
+        ApodRepositoryImpl(apodApiService, apodCacheService, ::apodResponseMapper, logger)
     }
 }
